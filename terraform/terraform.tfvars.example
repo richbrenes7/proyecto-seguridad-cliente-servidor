@@ -1,0 +1,30 @@
+# Plataforma de virtualizacion local (libvirt, hyperv o virtualbox)
+plataforma_virtualizacion = "hyperv"
+
+# Nombre del proyecto
+project_name = "proyecto-seguridad-cliente-servidor"
+
+# Red interna del laboratorio
+network_name = "red-interna-lab"
+network_cidr = "192.168.56.0/24"
+
+# Nombres e IPs esperadas de VMs
+server_name  = "srv-linux-seg"
+client_names = ["cli-01", "cli-02"]
+
+server_ip  = "192.168.56.10"
+client_ips = ["192.168.56.21", "192.168.56.22"]
+
+# Recursos del servidor
+server_cpu       = 2
+server_memory_mb = 4096
+server_disk_gb   = 40
+
+# Recursos de clientes
+client_cpu       = 2
+client_memory_mb = 4096
+client_disk_gb   = 50
+
+# Sistemas operativos de referencia
+server_os = "ubuntu-22.04"
+client_os = "windows-11"

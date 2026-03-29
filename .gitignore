@@ -1,0 +1,33 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+terraform.tfvars
+
+# Logs / temp
+*.log
+*.tmp
+*.bak
+
+# Python (si se usa para utilidades locales)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Evidencias pesadas (opcional)
+# evidencias/**/*.zip
+# evidencias/**/*.pcap

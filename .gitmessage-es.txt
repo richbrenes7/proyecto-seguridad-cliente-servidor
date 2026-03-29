@@ -1,0 +1,11 @@
+# Tipo(alcance): resumen breve en espanol
+#
+# Cuerpo opcional:
+# - Que se cambio
+# - Por que se cambio
+# - Impacto tecnico o academico
+#
+# Pie opcional:
+# Relacionado con: #issue
+# Evidencia: ruta/archivo
+

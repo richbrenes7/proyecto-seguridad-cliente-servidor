@@ -63,22 +63,15 @@ set_sshd_option "MaxSessions" "5"
 # Restringe acceso SSH a grupos esperados del laboratorio.
 set_sshd_option "AllowGroups" "admins_lab usuarios_lab"
 
-# Configura bloqueo por intentos fallidos via PAM de forma defensiva.
-# Se intenta primero el esquema Debian/Ubuntu y luego RHEL-like.
+# Nota importante:
+# En Ubuntu, modificar /etc/pam.d/common-auth de forma directa puede afectar
+# el inicio de sesion local en tty, sudo y su. Para evitar bloquear el acceso
+# interactivo del laboratorio, este script no altera PAM automaticamente.
+# Si se desea endurecer bloqueo por intentos fallidos, hacerlo con un perfil
+# probado para la distribucion y validar acceso local antes de cerrar sesion.
 configure_pam_faillock() {
-  local pam_common_auth="/etc/pam.d/common-auth"
   local pam_system_auth="/etc/pam.d/system-auth"
   local pam_password_auth="/etc/pam.d/password-auth"
-
-  if [[ -f "$pam_common_auth" ]]; then
-    if ! grep -q "pam_faillock.so" "$pam_common_auth"; then
-      {
-        echo "auth required pam_faillock.so preauth silent audit deny=5 unlock_time=900"
-        echo "auth [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900"
-      } >> "$pam_common_auth"
-    fi
-    return
-  fi
 
   if [[ -f "$pam_system_auth" && -f "$pam_password_auth" ]]; then
     if ! grep -q "pam_faillock.so" "$pam_system_auth"; then
@@ -97,7 +90,7 @@ configure_pam_faillock() {
     return
   fi
 
-  echo "[WARN] No se encontro archivo PAM compatible para configurar faillock automaticamente."
+  echo "[INFO] No se aplicaron cambios PAM automaticos en esta distribucion."
 }
 
 configure_pam_faillock

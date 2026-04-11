@@ -17,6 +17,25 @@ En entornos academicos y de laboratorio es frecuente la implementacion de arquit
 
 En consecuencia, la investigacion se orienta a resolver la falta de articulacion entre analisis de riesgos, politicas formales, controles implementados y mecanismos de validacion empirica.
 
+## Diagnostico del Entorno Cliente-Servidor
+El entorno de laboratorio se compone de una arquitectura cliente-servidor virtualizada con tres nodos principales:
+1. Un servidor Linux (`srv-linux-seg`) para servicios, control de acceso, auditoria y respaldo.
+2. Dos clientes Windows (`cli-01` y `cli-02`) para pruebas de autenticacion, acceso segun roles y generacion de evidencia.
+3. Una red interna aislada en Hyper-V para simular comunicacion cliente-servidor sin exponer el laboratorio a redes externas.
+
+Activos informaticos identificados:
+1. Credenciales de usuarios administrativos y estandar.
+2. Datos almacenados en el recurso compartido del servidor.
+3. Servicio SSH para administracion remota segura.
+4. Logs de autenticacion, auditoria y eventos del sistema.
+5. Respaldos locales del directorio critico del laboratorio.
+
+Riesgos y amenazas priorizados:
+1. Intentos de acceso no autorizado por fuerza bruta o uso indebido de credenciales.
+2. Escalacion de privilegios por configuraciones deficientes de roles y permisos.
+3. Exposicion o alteracion de informacion por ausencia de respaldo o controles de acceso.
+4. Falta de trazabilidad ante incidentes si no se preservan logs y evidencia tecnica.
+
 ## Justificacion
 1. Pertinencia academica: articula teoria de seguridad, analisis de riesgos y comprobacion experimental en un proyecto de posgrado.
 2. Pertinencia tecnica: demuestra que un conjunto coherente de politicas y controles disminuye riesgos de alta recurrencia.
